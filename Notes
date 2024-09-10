@@ -1,0 +1,24 @@
+npm install @reduxjs/toolkit react-redux
+Create a Redux Store (store has the all reducer names  which can be consumed) -> create store.ts under redux  and initialize all reducers
+Create a slice for each feature (counter,comment,like etc) ->create a folder slices/counter-> create index.tsx
+    a.In each slice index.tsx createSlice and define below :
+        1.initialState , name (counter) and reducers (increment,decrement) on the state 
+        2. now export the "reducer" and "actions" (incr /decr) to the external world (through store) so that they can use the reducer-> pass the action -> and change the state.
+        Redux toolkit will make events out of the reducers (which are triggered by actions).
+Now connect store to slicer ->import slicer in the store .Now store is setup .
+
+
+Now create custom hooks to "read" and one hook to "dispatch". Create hooks folder -> create index.ts
+         a. import AppDispatch , RootState from store we created and we exported the same there .
+         b. useAppDispatch: to dispatch action changes;
+         c. useAppSelector: read state values 
+
+         This will basically use AppDispatch, RootState from store and give useDispatch, useSelector hook for use .
+
+
+Use in home page or any other page
+import { useAppDispatch, useAppSelector } from hooks  - > used to call function or state - 2 hooks
+import { increment, decrement } from slicer - reducer -> used to pass the custom states to above 2 hooks.
+
+        a.useAppSelector((state) => state.counter); -> counter is the name in reducer .
+        b.useAppDispatch(): to dispatch action changes              
